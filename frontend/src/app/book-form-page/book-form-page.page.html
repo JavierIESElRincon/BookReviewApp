@@ -1,0 +1,44 @@
+<form [formGroup]="bookForm" (ngSubmit)="createBook()"> 
+
+  <ion-item> 
+    <ion-label position="floating">Title</ion-label>
+    <ion-input formControlName="title" type="Text"></ion-input>
+  </ion-item>
+
+  <ion-note color="dark" *nglf="getFormControl('title')?.hasError('required') && getFormControl('title')?.touched">
+    Title is mandatory.
+  </ion-note>
+
+  <ion-item> 
+    <ion-label position="floating">Author</ion-label>
+    <ion-input formControlName="author" type="Text"></ion-input>
+  </ion-item>
+
+  <ion-note color="dark" *nglf="getFormControl('author')?.hasError('required') && getFormControl('author')?.touched">
+    Author is mandatory.
+  </ion-note>
+
+  <ion-item> 
+    <ion-label position="floating">Genre</ion-label>
+    <ion-input formControlName="genre" type="Text"></ion-input>
+  </ion-item>
+
+  <ion-note color="dark" *nglf="getFormControl('genre')?.hasError('required') && getFormControl('genre')?.touched">
+    Genre is mandatory.
+  </ion-note>
+
+  <ion-item> 
+    <ion-label position="floating">Publication Date</ion-label>
+    <ion-input formControlName="publication_date" type="Text"></ion-input>
+  </ion-item>
+
+  <ion-note color="dark" *nglf="getFormControl('publication_date')?.hasError('required') && getFormControl('publication_date')?.touched">
+    Publication date is mandatory.
+  </ion-note>
+
+  <div>
+    <ion-button expand="full" type="submit" [disabled]="!bookForm.valid">Add book</ion-button>
+    <ion-button expand="full">Exit - Añadir función</ion-button>
+  </div>
+
+</form>
