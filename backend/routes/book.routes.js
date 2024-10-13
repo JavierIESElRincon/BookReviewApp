@@ -13,10 +13,10 @@ module.exports = app => {
     router.get("/:id", books.findOne);
 
     // Update a Book with id
-    router.get("/:id", books.update);
+    router.put("/:id", books.update);
 
     // Delete a Book with id
-    router.get("/:id", books.delete);
+    router.delete("/:id", books.delete);
 
     app.use('/api/books', router);
 };
