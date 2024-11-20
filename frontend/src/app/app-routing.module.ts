@@ -15,6 +15,18 @@ const routes: Routes = [
     path: 'book-form-page',
     loadChildren: () => import('./book-form-page/book-form-page.module').then( m => m.BookFormPagePageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./auth/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'reviews',
+    loadChildren: () => import('./reviews/reviews.module').then( m => m.ReviewsPageModule)
+  }
 ];
 
 @NgModule({

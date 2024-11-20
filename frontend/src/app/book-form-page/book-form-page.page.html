@@ -1,4 +1,4 @@
-<form [formGroup]="bookForm" (ngSubmit)="createBook()"> 
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()"> 
 
   <ion-item> 
     <ion-label position="floating">Title</ion-label>
@@ -36,9 +36,36 @@
     Publication date is mandatory.
   </ion-note>
 
+  <ion-grid>
+    <ion-row class="ion-align-items-center">
+      <!-- Columna con la imagen -->
+      <ion-col size="8" size-sm="6" size-md="6">
+        <ion-img class="photo-frame" *ngIf="capturedPhoto" [src]="capturedPhoto" (click)="takePhoto()"></ion-img>
+        <ion-img class="photo-frame" *ngIf="!capturedPhoto" src="../../assets/No-Image-Placeholder.svg"
+          (click)="takePhoto()"></ion-img>
+      </ion-col>
+  
+      <!-- Columna con los botones -->
+      <ion-col size="4" size-sm="6" size-md="6">
+        <ion-button expand="block" color="primary" fill="outline" (click)="takePhoto()">
+          <ion-icon slot="start" name="camera-outline"></ion-icon>
+          Take a photo
+        </ion-button>
+        <ion-button expand="block" color="primary" fill="outline" (click)="pickImage()">
+          <ion-icon slot="start" name="image-outline"></ion-icon>
+          Pick an image
+        </ion-button>
+        <ion-button expand="block" color="danger" fill="outline" (click)="discardImage()">
+          <ion-icon slot="start" name="aperture"></ion-icon>
+          Discard image
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <div>
     <ion-button expand="full" type="submit" [disabled]="!bookForm.valid">Add book</ion-button>
-    <ion-button expand="full">Exit - Añadir función</ion-button>
+    <ion-button expand="full" href="/home">Exit</ion-button>
   </div>
 
 </form>

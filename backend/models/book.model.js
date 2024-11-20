@@ -11,6 +11,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         publication_date: {
             type: Sequelize.DATE
+        },
+        filename: {
+            type: Sequelize.STRING
         }
     });
     return books;

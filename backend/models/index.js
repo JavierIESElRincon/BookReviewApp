@@ -20,5 +20,10 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.books = require("./book.model.js")(sequelize, Sequelize);
+db.users = require("./user.model.js")(sequelize, Sequelize);
+db.reviews = require("./review.model.js")(sequelize, Sequelize);
+
+db.books.hasMany(db.reviews);
+db.reviews.belongsTo(db.books);
 
 module.exports = db;

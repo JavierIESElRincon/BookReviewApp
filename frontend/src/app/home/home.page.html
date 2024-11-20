@@ -1,41 +1,66 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title size="large" slot="start">
-      BookReview
-    </ion-title>
+    <ion-item>
+      <ion-title>
+        TheBookClub
+      </ion-title>
+    </ion-item>
+    <ion-buttons slot="end">
+      <ion-button href="/reviews">Reviews</ion-button>
+      <ion-button href="/login">Login</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-button>
-        <ion-title size="large">BookReview</ion-title>
-        <img src="/frontend/src/assets/icon/open-book-icon-10.png" alt="book icon">
-      </ion-button>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding" [fullscreen]="true">
 
   <ion-grid class="searchBar" [fixed]="true">
     <ion-row class="rowSearchBar">
       <ion-col><h1>Books</h1></ion-col>
-      <ion-col><ion-searchbar show-clear-button="always" search-icon="search-circle" placeholder="Search books"></ion-searchbar></ion-col>
+      <ion-col><ion-searchbar show-clear-button="always" search-icon="search-circle" placeholder="Search books" (ionInput)="searchBooks($event)"></ion-searchbar></ion-col>
       <ion-col><ion-button color ="dark" class ="BtnAdd" shape="round" (click)="gotoBookForm()">Add Book</ion-button></ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-list>
-    <ion-item *ngFor="let b of books">
-      <ion-label>
-        <h1 class="title">{{b.title}}</h1>
-        <ion-img src="/frontend/src/assets/book-covers/adda88b4-9171-40b8-8c36-bf9801c6a94a.jpg" alt="Portada de {{b.title}}"></ion-img>
-        <p class="author">{{b.author}}</p>
-        <ion-button (click)="deleteBook(b.id)">Delete</ion-button>
-      </ion-label>
-    </ion-item>
-
-  </ion-list>
-
+  <div class="bookContainer">
+    <ion-card class="bookCard" *ngFor="let b of searchedBook">
+      <img *ngIf="b.filename" src= "http://localhost:8080/images/{{b.filename}}" alt="Portada de {{b.title}}" style="height: 150px; width: 120px; vertical-align: middle;">
+      <ion-card-header>
+        <ion-card-title>{{b.title}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>{{b.author}}</ion-card-content>
+      <ion-button class="deleteBtn" (click)="deleteBook(b.id)">Delete</ion-button>
+      <hr>
+      <ion-accordion-group>
+        <ion-accordion value="first">
+          <ion-item slot="header" color="light">
+            <ion-label>Add review</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <form [formGroup]="reviewForm" (ngSubmit)="submitFormReview()">
+              <ion-item> 
+                <ion-label position="floating">bookId = {{b.id}}</ion-label>
+                <ion-input formControlName="bookId" type="number">{{b.id}}</ion-input>
+              </ion-item>
+              <ion-item> 
+                <ion-label position="floating">Username</ion-label>
+                <ion-input formControlName="username" type="Text"></ion-input>
+              </ion-item>
+              <ion-item> 
+                <ion-label position="floating">Rating</ion-label>
+                <ion-input formControlName="rating" type="number"></ion-input>
+              </ion-item>
+              <ion-item> 
+                <ion-label position="floating">Description</ion-label>
+                <ion-input formControlName="description" type="Text"></ion-input>
+              </ion-item>
+              <div>
+                <ion-button expand="full" type="submit">Add review</ion-button>
+              </div>
+            </form>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-card>
+  </div>
 </ion-content>
-

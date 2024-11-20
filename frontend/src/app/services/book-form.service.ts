@@ -24,4 +24,36 @@ export class BookFormService {
 
     return this.httpClient.post(this.serverUrl, body.toString(), { headers });
   }
+
+
+  // submit book + image
+  createBook(book, blob){
+    let formData = new FormData();
+    formData.append('title', book.title);
+    formData.append('author', book.author);
+    formData.append('genre', book.genre);
+    formData.append('publication_date', book.publication_date);
+    formData.append('filename', blob)
+
+    return this.httpClient.post(this.serverUrl, formData)
+  }
+
+  private getOptions(token: string){
+
+    let bearerAccess = 'Bearer ' + token;
+
+    let options = {
+      headers: {
+        'Authorization' : bearerAccess,
+        'Content-Type' : 'application/x-www-form-urlencoded',
+      }
+      , withCredentials: true
+    };
+
+    return options;
+  }
+
+
+
+
 }

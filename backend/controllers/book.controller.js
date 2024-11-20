@@ -17,7 +17,8 @@ exports.create = (req, res) => {
         title: req.body.title,
         author: req.body.author,
         genre: req.body.genre,
-        publication_date: req.body.publication_date
+        publication_date: req.body.publication_date,
+        filename: req.file ? req.file.filename : ""
     };
 
     Book.create(newBook)

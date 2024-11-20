@@ -40,10 +40,99 @@ ion-col {
   align-self: center;
 }
 
-ion-title {
+ion-toolbar {
   align-content: center; 
   align-items: center;
   justify-content: center;
   align-self: center;
 }
 
+ion-header {
+  ion-toolbar {
+    display: flex;
+    justify-content: space-between;
+
+    ion-title {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.top-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+ion-card img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.bookContainer {
+  display: grid;
+  justify-content: space-between;
+  gap: 100px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  padding: 16px;
+}
+
+.hidden {
+  display: none
+}
+
+.bookCard {
+  width: 300px; /* Ancho de cada tarjeta */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  border-radius: 10px; /* Bordes redondeados */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  align-content: center;
+  text-align: center;
+  padding: 10px;
+  overflow-y: auto;
+  height: 450px;
+}
+
+ion-card:hover {
+  transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+ion-card-content {
+  text-align: center; /* Centrar el contenido */
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.card-description {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.card-author {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.deleteBtn {
+  --border-radius: 8px; /* Botones redondeados */
+  margin-top: 8px;
+  font-size: 0.9rem;
+  --background: #f1f1f1;
+  --color: #333;
+  --background-activated: #ddd;
+}
